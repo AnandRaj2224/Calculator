@@ -1,6 +1,6 @@
-let num1 = 0;
-let operator = '';
-let num2 = 0;
+let num1 = '';
+let op = '';
+let num2 = '';
 
 function add(num1,num2)
 {
@@ -19,48 +19,58 @@ function divide(num1,num2)
   return num1/num2;
 }
 
-function operate(num1,num2,operator){
-  let result = 0;
-  if(operator === '+'){
-    result = add(num1,num2);
-  }
-  else if(operator === '-'){
-    result = subtract(num1,num2);
-  }
-  else if(operator === '*'){
-   result = multiply(num1,num2);
-  }
-  else if(operator === '/'){
-    result = divide(num1,num2);
-  }
-  else{
-    return 'ERROR';
-  }
-   return result;
+function operate(){
+  let number1 = parseFloat(num1);
+  let number2 = parseFloat(num2);
+  const display = document.querySelector('.display');
+  let result;
+  switch(op){
+    case '+':
+      result = add(number1,number2);
+      break;
+      case '-':
+        result = subtract(number1,number2);
+        break;
+        case '*' :
+          result = multiply(number1, number2);
+          break;
+        case '/':
+          result = divide(number1, number2);
+          break;
+        default:
+          result = 'ERROR: Invalid operator';
+      }
+      display.textContent = result;
+  
+  // Reset num1, num2, and op for the next operation
+  num1 = result;
+  num2 = '';
+  op = '';
 }
-// for the output of calculator.
-const display = document.querySelector('.display');
-display.textContent = "the results will be displayed here";
 // for operators of calculator.
 const operators = document.querySelector('.operators');
 const addition = document.createElement('button');
 addition.textContent = "+";
-addition.classList = "operators";
+addition.classList = "operation";
+addition.addEventListener('click',showOperator);
 const subtraction = document.createElement('button');
 subtraction.textContent = "-";
-addition.classList = "operators";
+subtraction.classList = "operation";
+subtraction.addEventListener('click',showOperator);
 const multiplication = document.createElement('button');
 multiplication.textContent = "*";
-addition.classList = "operators";
+multiplication.classList = "operation";
+multiplication.addEventListener('click',showOperator);
 const division = document.createElement('button');
 division.textContent = "/";
-addition.classList = "operators";
+division.classList = "operation";
+division.addEventListener('click',showOperator);
 const clear = document.createElement('button');
 clear.textContent = "clear";
-addition.classList = "operators";
+clear.classList = "clear";
 const equalsTo = document.createElement('button');
 equalsTo.textContent = "=";
-addition.classList = "operators";
+equalsTo.classList = "equalsTo";
 operators.appendChild(addition);
 operators.appendChild(subtraction);
 operators.appendChild(multiplication);
@@ -75,6 +85,29 @@ for(let i = 0; i<=9; i++){
   keys.textContent = i;
   keys.classList = "keys";
   numbers.appendChild(keys);
+  keys.addEventListener('click',showDigits);
 }
 
 
+//function for displaying the storing the numbers.
+function showDigits(){
+  const display = document.querySelector('.display');
+  const keys = this.textContent;
+  display.textContent += keys;
+  if (op === '') {
+    num1 += keys;
+  } else {
+    num2 += keys;
+  }
+}
+
+// fucntion for displaying the storing the operator.
+function showOperator(){
+  const operators = document.querySelector(".operators");
+  const display = document.querySelector('.display');
+   op = this.textContent;
+  display.textContent += op;
+}
+
+// to display the output
+equalsTo.addEventListener('click',operate)
