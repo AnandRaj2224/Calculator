@@ -61,11 +61,20 @@ addition.classList = "operators";
 const equalsTo = document.createElement('button');
 equalsTo.textContent = "=";
 addition.classList = "operators";
-
 operators.appendChild(addition);
 operators.appendChild(subtraction);
 operators.appendChild(multiplication);
 operators.appendChild(division);
 operators.appendChild(clear);
 operators.appendChild(equalsTo);
+
+// for the numbers in the calculator.
+const numbers = document.querySelector(".numbers");
+for(let i = 0; i<=9; i++){
+  const keys = document.createElement('button');
+  keys.textContent = i;
+  keys.classList = "keys";
+  numbers.appendChild(keys);
+}
+
 
