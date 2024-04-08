@@ -121,3 +121,14 @@ function displayOutput(){
   const display = document.querySelector('.display');
   display.textContent = result;
 }
+
+// function to clear display
+clear.addEventListener('click',toClear);
+
+function toClear(){
+  const display = document.querySelector('.display');
+  display.textContent = '';
+  op = '';
+  num1 = '';
+  num2 = '';
+}
