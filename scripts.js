@@ -19,10 +19,6 @@ function divide(num1,num2)
   return num1/num2;
 }
 
-/*console.log(add(5,5));
-console.log(subtract(5,5));
-console.log(multiply(5,5));
-console.log(divide(5,5)); */
 function operate(num1,num2,operator){
   let result = 0;
   if(operator === '+'){
@@ -42,5 +38,34 @@ function operate(num1,num2,operator){
   }
    return result;
 }
+// for the output of calculator.
+const display = document.querySelector('.display');
+display.textContent = "the results will be displayed here";
+// for operators of calculator.
+const operators = document.querySelector('.operators');
+const addition = document.createElement('button');
+addition.textContent = "+";
+addition.classList = "operators";
+const subtraction = document.createElement('button');
+subtraction.textContent = "-";
+addition.classList = "operators";
+const multiplication = document.createElement('button');
+multiplication.textContent = "*";
+addition.classList = "operators";
+const division = document.createElement('button');
+division.textContent = "/";
+addition.classList = "operators";
+const clear = document.createElement('button');
+clear.textContent = "clear";
+addition.classList = "operators";
+const equalsTo = document.createElement('button');
+equalsTo.textContent = "=";
+addition.classList = "operators";
 
-console.log(operate(5,5,'%'));
+operators.appendChild(addition);
+operators.appendChild(subtraction);
+operators.appendChild(multiplication);
+operators.appendChild(division);
+operators.appendChild(clear);
+operators.appendChild(equalsTo);
+
