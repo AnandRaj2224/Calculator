@@ -1,6 +1,7 @@
 let num1 = '';
 let op = '';
 let num2 = '';
+let result;
 
 function add(num1,num2)
 {
@@ -22,30 +23,24 @@ function divide(num1,num2)
 function operate(){
   let number1 = parseFloat(num1);
   let number2 = parseFloat(num2);
-  const display = document.querySelector('.display');
-  let result;
   switch(op){
     case '+':
       result = add(number1,number2);
       break;
-      case '-':
-        result = subtract(number1,number2);
-        break;
-        case '*' :
-          result = multiply(number1, number2);
-          break;
-        case '/':
-          result = divide(number1, number2);
-          break;
-        default:
-          result = 'ERROR: Invalid operator';
+    case '-':
+      result = subtract(number1,number2);
+      break;
+    case '*' :
+      result = multiply(number1, number2);
+      break;
+    case '/':
+      result = divide(number1, number2);
+      break;
+    default:
+      result = 'ERROR: Invalid operator';
       }
-      display.textContent = result;
-  
-  // Reset num1, num2, and op for the next operation
-  num1 = result;
   num2 = '';
-  op = '';
+  num1 = result;
 }
 // for operators of calculator.
 const operators = document.querySelector('.operators');
@@ -94,20 +89,35 @@ function showDigits(){
   const display = document.querySelector('.display');
   const keys = this.textContent;
   display.textContent += keys;
-  if (op === '') {
-    num1 += keys;
-  } else {
+  if(num1 === '')
+  {
+     if (op === '') 
+      num1 += keys;
+  } 
+  else {
     num2 += keys;
   }
 }
 
-// fucntion for displaying the storing the operator.
-function showOperator(){
+
+  // Function for displaying and storing the operator
+function showOperator() {
   const operators = document.querySelector(".operators");
   const display = document.querySelector('.display');
-   op = this.textContent;
-  display.textContent += op;
+    if (num1 !== '' && num2 !== '') { // If both num1 and num2 are set
+    operate(); // Perform the operation
+    display.textContent = result; // Display the result
+    num1 = result; // Set the result as num1 for the next operation
+    num2 = ''; // Reset num2
+    }
+  op = this.textContent; // Set the operator
+  display.textContent += op; // Display the operator
 }
 
 // to display the output
-equalsTo.addEventListener('click',operate)
+equalsTo.addEventListener('click',displayOutput);
+function displayOutput(){
+  operate();
+  const display = document.querySelector('.display');
+  display.textContent = result;
+}
