@@ -37,7 +37,7 @@ function operate(){
       result = divide(number1, number2);
       break;
     default:
-      result = 'ERROR: Invalid operator';
+      result = 'ERROR';
       }
   num2 = '';
   num1 = result;
@@ -45,24 +45,24 @@ function operate(){
 // for operators of calculator.
 const operators = document.querySelector('.operators');
 const addition = document.createElement('button');
-addition.textContent = "+";
+addition.textContent = '+';
 addition.classList = "operation";
 addition.addEventListener('click',showOperator);
 const subtraction = document.createElement('button');
-subtraction.textContent = "-";
+subtraction.textContent = '-';
 subtraction.classList = "operation";
 subtraction.addEventListener('click',showOperator);
 const multiplication = document.createElement('button');
-multiplication.textContent = "*";
+multiplication.textContent = '*';
 multiplication.classList = "operation";
 multiplication.addEventListener('click',showOperator);
 const division = document.createElement('button');
-division.textContent = "/";
+division.textContent = '/';
 division.classList = "operation";
 division.addEventListener('click',showOperator);
 const clear = document.createElement('button');
-clear.textContent = "clear";
-clear.classList = "clear";
+clear.textContent = 'CLEAR';
+clear.classList = "operation";
 const equalsTo = document.createElement('button');
 equalsTo.textContent = "=";
 equalsTo.classList = "equalsTo";
